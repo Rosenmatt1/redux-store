@@ -7,8 +7,9 @@ class PostList extends React.Component {
   componentDidMount() {
     this.props.fetchPosts()
   }
-  // console.log("props", song)
+
   render() {
+    // console.log("posts", this.props.posts)
     return (
       <div>
         Post List
@@ -17,9 +18,9 @@ class PostList extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   console.log("state", state)
-//   return { song: state.selectedSong }
-// }
+const mapStateToProps = (state) => {
+  // console.log("state", state)
+  return { posts: state.posts }
+}
 
-export default connect(null, { fetchPosts: fetchPosts })(PostList)
+export default connect(mapStateToProps, { fetchPosts: fetchPosts })(PostList)
