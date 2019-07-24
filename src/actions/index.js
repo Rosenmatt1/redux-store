@@ -60,4 +60,37 @@ export const fetchUser = id => async dispatch => {
   })
 }
 
+export const getTitle = title => async dispatch => {
+  dispatch({
+    type: 'GET_TITLE',
+    payload: title
+  })
+}
+
+export const getBody = body => async dispatch => {
+  dispatch({
+    type: 'GET_BODY',
+    payload: body
+  })
+}
+
+
+export const createPost = (postData) => dispatch => {
+  console.log("action called")
+  fetch('https://jsonplaceholder.typicode.com/posts', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(postData)
+  })
+    .then(res => res.json())
+    .then(singlePost => dispatch({
+      type: 'NEW_POST',
+      payload: singlePost
+    }))
+}
+
+
+
 
