@@ -6,7 +6,11 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   await dispatch(fetchPosts())
 
   const userIds = _.uniq(_.map(getState().posts, 'userId'))
+  userIds.forEach(id => dispatch(fetchUser(id)))
   console.log(userIds)
+
+  //forEach can not have await.  If wanted to wait for each userId would have to :
+  // await Promise.all(userIds.map(id => dispatch (fetchUser(id))))
 }
 
 export const fetchPosts = () => async dispatch => {
