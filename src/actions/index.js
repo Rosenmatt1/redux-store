@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import jsonPlaceholder from '../apis/jsonPlaceholder'
 
+
+
 export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   console.log("about to fetch posts")
   await dispatch(fetchPosts())
@@ -14,8 +16,6 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   .uniq()
   .forEach(id => dispatch(fetchUser(id)))
   .value()
-
-
 
   //forEach can not have await.  If wanted to wait for each userId would have to :
   // await Promise.all(userIds.map(id => dispatch (fetchUser(id))))
@@ -60,14 +60,15 @@ export const fetchUser = id => async dispatch => {
   })
 }
 
-export const getTitle = title => async dispatch => {
+export const getTitle = title => dispatch => {
+  console.log("action fired")
   dispatch({
     type: 'GET_TITLE',
     payload: title
   })
 }
 
-export const getBody = body => async dispatch => {
+export const getBody = body => dispatch => {
   dispatch({
     type: 'GET_BODY',
     payload: body
@@ -75,8 +76,13 @@ export const getBody = body => async dispatch => {
 }
 
 
-export const createPost = (postData) => dispatch => {
-  console.log("action called")
+export const createPost = () => (dispatch, getState) => {
+  const { title, body } = getState()
+  let postData = {
+    title: title,
+    body: body
+  }
+  console.log("getState", postData)
   fetch('https://jsonplaceholder.typicode.com/posts', {
     method: 'POST',
     headers: {
@@ -85,10 +91,12 @@ export const createPost = (postData) => dispatch => {
     body: JSON.stringify(postData)
   })
     .then(res => res.json())
-    .then(singlePost => dispatch({
+    .then(singlePost => {
+      console.log(singlePost)
+      dispatch({
       type: 'NEW_POST',
       payload: singlePost
-    }))
+    })})
 }
 
 

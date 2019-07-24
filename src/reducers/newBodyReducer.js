@@ -1,12 +1,12 @@
 export default (state = [], action) => {
-  // if (action.type === 'GET_TITLE') {
+  // if (action.type === 'GET_BODY') {
   //   return action.payload
   // }
   // return state
   switch (action.type) {
-    case 'GET_TITLE':
-      console.log('reducer fired')
-      return action.payload 
+    case 'GET_BODY':
+      console.log('reducer')
+      return action.payload
     default:
       return state;
   }
