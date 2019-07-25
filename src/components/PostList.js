@@ -1,11 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchPostsAndUsers } from '../actions'
+import { fetchPostsAndUsers, deletePost } from '../actions'
 import UserHeader from './UserHeader'
 
 class PostList extends React.Component {
   componentDidMount() {
     this.props.fetchPostsAndUsers()
+  }
+
+  deleter = (id) => {
+    console.log("deleter Id", id)
+    this.props.deletePost(id)
   }
 
   renderList() {
@@ -17,7 +22,7 @@ class PostList extends React.Component {
             <div className="description">
               <h2>{post.title}</h2>
               <p>{post.body}</p>
-              <button> Delete </button>
+              <button onClick={() => this.deleter(post.id)}> Delete </button>
             </div>
             <UserHeader userId={post.userId} />
           </div>
@@ -41,4 +46,4 @@ const mapStateToProps = (state) => {
   return { posts: state.posts }
 }
 
-export default connect(mapStateToProps, { fetchPostsAndUsers: fetchPostsAndUsers  })(PostList)
+export default connect(mapStateToProps, { fetchPostsAndUsers, deletePost })(PostList)

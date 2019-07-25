@@ -2,19 +2,15 @@ import _ from 'lodash'
 import jsonPlaceholder from '../apis/jsonPlaceholder'
 
 export const fetchPostsAndUsers = () => async (dispatch, getState) => {
-  console.log("about to fetch posts")
   await dispatch(fetchPosts())
-
   // const userIds = _.uniq(_.map(getState().posts, 'userId'))
   // userIds.forEach(id => dispatch(fetchUser(id)))
   // console.log(userIds)
-
   _.chain(getState().posts)
   .map('userId')
   .uniq()
   .forEach(id => dispatch(fetchUser(id)))
   .value()
-
   //forEach can not have await.  If wanted to wait for each userId would have to :
   // await Promise.all(userIds.map(id => dispatch (fetchUser(id))))
 }
@@ -96,8 +92,8 @@ export const createPost = () => (dispatch, getState) => {
 }
 
 export const deletePost = (id) => (dispatch, getState) => {
-  const posts = getState.posts
-  console.log(posts)
+  const posts = getState().posts
+  console.log("theDeletePosts posts", posts)
   const removePost = posts.filter(post => {
     if (post.id === id) {
     }
