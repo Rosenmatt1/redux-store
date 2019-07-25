@@ -1,8 +1,6 @@
 import _ from 'lodash'
 import jsonPlaceholder from '../apis/jsonPlaceholder'
 
-
-
 export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   console.log("about to fetch posts")
   await dispatch(fetchPosts())
@@ -75,14 +73,12 @@ export const getBody = body => dispatch => {
   })
 }
 
-
 export const createPost = () => (dispatch, getState) => {
   const { title, body } = getState()
   let postData = {
     title: title,
     body: body
   }
-  console.log("getState", postData)
   fetch('https://jsonplaceholder.typicode.com/posts', {
     method: 'POST',
     headers: {
@@ -98,6 +94,33 @@ export const createPost = () => (dispatch, getState) => {
       payload: singlePost
     })})
 }
+
+export const deletePost = (id) => (dispatch, getState) => {
+  const posts = getState.posts
+  console.log(posts)
+  const removePost = posts.filter(post => {
+    if (post.id === id) {
+    }
+    return !post
+  })
+  fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(removePost)
+  })
+    .then(res => res.json())
+    .then(removedPost => {
+      console.log(removedPost)
+      dispatch({
+        type: 'DELETE_POST',
+        payload: removedPost
+      })
+    })
+}
+
+
 
 
 
