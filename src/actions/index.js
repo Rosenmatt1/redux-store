@@ -7,10 +7,10 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   // userIds.forEach(id => dispatch(fetchUser(id)))
   // console.log(userIds)
   _.chain(getState().posts)
-  .map('userId')
-  .uniq()
-  .forEach(id => dispatch(fetchUser(id)))
-  .value()
+    .map('userId')
+    .uniq()
+    .forEach(id => dispatch(fetchUser(id)))
+    .value()
   //forEach can not have await.  If wanted to wait for each userId would have to :
   // await Promise.all(userIds.map(id => dispatch (fetchUser(id))))
 }
@@ -48,9 +48,9 @@ export const fetchPosts = () => async dispatch => {
 
 export const fetchUser = id => async dispatch => {
   const response = await jsonPlaceholder.get(`/users/${id}`)
-  dispatch({ 
-    type: 'FETCH_USER', 
-    payload: response.data 
+  dispatch({
+    type: 'FETCH_USER',
+    payload: response.data
   })
 }
 
@@ -86,32 +86,34 @@ export const createPost = () => (dispatch, getState) => {
     .then(singlePost => {
       console.log(singlePost)
       dispatch({
-      type: 'NEW_POST',
-      payload: singlePost
-    })})
+        type: 'NEW_POST',
+        payload: singlePost
+      })
+    })
 }
 
-export const deletePost = (id) => (dispatch, getState) => {
-  const posts = getState().posts
-  console.log("theDeletePosts posts", posts)
-  const removePost = posts.filter(post => {
-    if (post.id === id) {
-    }
-    return !post
-  })
-  fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+export const deletePost = (id) => async (dispatch, getState) => {
+  // const posts = getState().posts
+  // console.log("theDeletePosts posts", posts)
+  // const removedPost = posts.filter(post => {
+  //   if (post.id === id) {
+  //     return post
+  //   }
+  //   return !post
+  // })
+  // console.log("removedPost", removePost)
+  await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
     method: 'DELETE',
     headers: {
       'content-type': 'application/json'
-    },
-    body: JSON.stringify(removePost)
+    }
   })
     .then(res => res.json())
     .then(removedPost => {
-      console.log(removedPost)
+      // console.log("removedPost", removedPost)
       dispatch({
         type: 'DELETE_POST',
-        payload: removedPost
+        payload: id
       })
     })
 }
