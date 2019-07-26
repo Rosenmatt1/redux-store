@@ -118,33 +118,33 @@ export const deletePost = (id) => async (dispatch, getState) => {
     })
 }
 
-// export const editPost = (updatedPost) => async (dispatch, getState) => {
-//   const posts = getState().posts
-//   // console.log("theDeletePosts posts", posts)
-//   // const removedPost = posts.filter(post => {
-//   //   if (post.id === id) {
-//   //     return post
-//   //   }
-//   //   return !post
-//   // })
-//   // console.log("removedPost", removePost)
-//   await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
-//     method: 'PUT',
-//     body: JSON.stringify(editedFlash),
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Accept': 'application/json',
-//     }
-//   })
-//     .then(res => res.json())
-//     .then(removedPost => {
-//       // console.log("removedPost", removedPost)
-//       dispatch({
-//         type: 'EDIT_POST',
-//         payload: id
-//       })
-//     })
-// }
+export const editPost = (updatedPost) => async (dispatch, getState) => {
+  // const posts = getState().posts
+  // // console.log("theDeletePosts posts", posts)
+  // // const removedPost = posts.filter(post => {
+  // //   if (post.id === id) {
+  // //     return post
+  // //   }
+  // //   return !post
+  // // })
+  // // console.log("removedPost", removePost)
+  // await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+  //   method: 'PUT',
+  //   body: JSON.stringify(editedFlash),
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     'Accept': 'application/json',
+  //   }
+  // })
+  //   .then(res => res.json())
+  //   .then(removedPost => {
+  //     // console.log("removedPost", removedPost)
+  //     dispatch({
+  //       type: 'EDIT_POST',
+  //       payload: id
+  //     })
+  //   })
+}
 
 
 

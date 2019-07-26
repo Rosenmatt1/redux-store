@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchPostsAndUsers, deletePost } from '../actions'
+import { fetchPostsAndUsers, deletePost, editPost } from '../actions'
 import UserHeader from './UserHeader'
 
-class PostList extends React.Component {
+class PostList extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      title: "",
+    }
+    // this.updater = this.updater.bind(this)
+  }
+   
+
   componentDidMount() {
     this.props.fetchPostsAndUsers()
   }
@@ -12,6 +21,17 @@ class PostList extends React.Component {
     console.log("deleter Id", id)
     this.props.deletePost(id)
   }
+
+  edit = (e) => {
+    e.preventDefault()
+    this.setState({
+      title: e.target.value
+    })
+  }
+
+  // editer = (title, id) => {
+  //   this.props.editPost(title, id)
+  // }
 
   renderList() {
     return this.props.posts.map(post => {
@@ -23,6 +43,8 @@ class PostList extends React.Component {
               <h2>{post.title}</h2>
               <p>{post.body}</p>
               <button onClick={() => this.deleter(post.id)}> Delete </button>
+              <input onChange={(e) => this.edit(e)}/>
+              <button >Edit</button>
             </div>
             <UserHeader userId={post.userId} />
           </div>
@@ -46,4 +68,4 @@ const mapStateToProps = (state) => {
   return { posts: state.posts }
 }
 
-export default connect(mapStateToProps, { fetchPostsAndUsers, deletePost })(PostList)
+export default connect(mapStateToProps, { fetchPostsAndUsers, deletePost, editPost })(PostList)
