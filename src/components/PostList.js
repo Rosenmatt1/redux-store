@@ -29,9 +29,9 @@ class PostList extends Component {
     })
   }
 
-  // editer = (title, id) => {
-  //   this.props.editPost(title, id)
-  // }
+  sendEditToAction = (title, id) => {
+    this.props.editPost(title, id)
+  }
 
   renderList() {
     return this.props.posts.map(post => {
@@ -44,7 +44,7 @@ class PostList extends Component {
               <p>{post.body}</p>
               <button onClick={() => this.deleter(post.id)}> Delete </button>
               <input onChange={(e) => this.edit(e)}/>
-              <button >Edit</button>
+              <button onClick={() => this.sendEditToAction(this.state.title, post.id )}>Edit</button>
             </div>
             <UserHeader userId={post.userId} />
           </div>
