@@ -14,14 +14,14 @@ export default (state = [], action) => {
       // return _.omit([...state, action.payload])
       console.log(state)
       return state.filter(post => post.id !== action.payload)
-    // case 'EDIT_POST':
-    //   // console.log(state)
-    //   return state.map(post => {
-    //     if (post.id === action.payload.id) {
-    //       return action.payload
-    //     }
-    //     return post
-    //   }
+    case 'EDIT_POST':
+      console.log("edit reducer fired")
+      return state.map(post => {
+        if (post.id === action.payload.id) {
+          return action.payload
+        }
+        return post
+      })
     default:
       return state
   }
