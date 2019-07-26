@@ -119,7 +119,7 @@ export const deletePost = (id) => async (dispatch, getState) => {
 }
 
 export const editPost = (title, id) => async (dispatch, getState) => {
-  console.log(title, id)
+  // console.log(title, id)
   // const posts = getState().posts
   // // console.log("theDeletePosts posts", posts)
   // // const removedPost = posts.filter(post => {
@@ -128,23 +128,27 @@ export const editPost = (title, id) => async (dispatch, getState) => {
   // //   }
   // //   return !post
   // // })
-  // // console.log("removedPost", removePost)
-  // await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
-  //   method: 'PUT',
-  //   body: JSON.stringify(editedFlash),
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'Accept': 'application/json',
-  //   }
-  // })
-  //   .then(res => res.json())
-  //   .then(removedPost => {
-  //     // console.log("removedPost", removedPost)
-  //     dispatch({
-  //       type: 'EDIT_POST',
-  //       payload: id
-  //     })
-  //   })
+  const updatedPost = {
+    title: title,
+    id: id
+  }
+  console.log("updatedPost", updatedPost)
+  await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify(updatedPost),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    }
+  })
+    .then(res => res.json())
+    .then(editedPost => {
+      console.log("editedPost", editedPost)
+      dispatch({
+        type: 'EDIT_POST',
+        payload: editedPost
+      })
+    })
 }
 
 
