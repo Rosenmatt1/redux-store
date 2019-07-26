@@ -1,6 +1,6 @@
 // import _ from 'lodash'
 
-export default (state=[], action) => {
+export default (state = [], action) => {
   // if (action.type === 'FETCH_POSTS') {
   //   return action.payload
   // }
@@ -14,21 +14,21 @@ export default (state=[], action) => {
       // return _.omit([...state, action.payload])
       console.log(state)
       return state.filter(post => post.id !== action.payload)
-    default: 
+    // case 'EDIT_POST':
+    //   // console.log(state)
+    //   return state.map(post => {
+    //     if (post.id === action.payload.id) {
+    //       return action.payload
+    //     }
+    //     return post
+    //   }
+    default:
       return state
   }
 }
 
-// case 'EDIT_POST':
-// console.log(state)
-// return state.map(post => {
-//   if (post.id === action.payload.id) {
-//     return action.payload
-//   }
-//   return post
-// }
 
 
 
 
-  
+
