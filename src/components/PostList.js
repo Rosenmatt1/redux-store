@@ -9,10 +9,8 @@ class PostList extends Component {
     this.state = {
       title: "",
     }
-    // this.updater = this.updater.bind(this)
   }
    
-
   componentDidMount() {
     this.props.fetchPostsAndUsers()
   }
@@ -54,7 +52,6 @@ class PostList extends Component {
   }
 
   render() {
-    // console.log("posts", this.props.posts)
     return (
       <div className="ui relaxed divided list">
         {this.renderList()}
@@ -64,7 +61,6 @@ class PostList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log("state", state)
   return { posts: state.posts }
 }
 
