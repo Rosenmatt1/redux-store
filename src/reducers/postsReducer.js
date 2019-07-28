@@ -8,6 +8,7 @@ export default (state = [], action) => {
     case 'FETCH_POSTS':
       return action.payload
     case 'NEW_POST':
+      console.log(state)
       return [...state, action.payload]
     case 'DELETE_POST':
       // console.log(state)
