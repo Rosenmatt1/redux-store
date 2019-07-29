@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { createPost } from '../actions'
 import { getTitle } from '../actions'
 import { getBody } from '../actions'
+import { clearTitle } from '../actions'
 import '../App.css'
 
 class Form extends React.Component {
@@ -24,6 +25,7 @@ class Form extends React.Component {
 
   triggerPost() {
     this.props.createPost()
+    this.props.clearTitle()
   }
 
   render() {
@@ -60,5 +62,5 @@ class Form extends React.Component {
 //   return { title: state.posts }
 // }
 
-export default connect(null, { getTitle, getBody, createPost })(Form)
+export default connect(null, { getTitle, getBody, createPost, clearTitle })(Form)
 

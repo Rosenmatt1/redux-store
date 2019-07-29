@@ -62,6 +62,14 @@ export const getTitle = title => dispatch => {
   })
 }
 
+export const clearTitle = () => dispatch => {
+  const emptyString = ""
+  dispatch({
+    type: 'CLEAR_TITLE',
+    payload: emptyString
+  })
+}
+
 export const getBody = body => dispatch => {
   dispatch({
     type: 'GET_BODY',
