@@ -7,13 +7,6 @@ import { clearTitle } from '../actions'
 import '../App.css'
 
 class Form extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      title: null,
-      body: null
-    }
-  }
 
   sendTitle = (e) => {
     this.props.getTitle(e.target.value)
