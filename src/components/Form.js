@@ -24,10 +24,6 @@ class Form extends React.Component {
 
   triggerPost() {
     this.props.createPost()
-    this.setState({
-      title: null,
-
-    })
   }
 
   render() {
@@ -38,18 +34,18 @@ class Form extends React.Component {
         <div className="row">
 
           <div>
-          <p>title</p>
+            <p>title</p>
           </div>
           <input
             onChange={(e) => this.sendTitle(e)}
-            value={this.state.title ? this.state.title: null}
-            
-            />
+            value={this.state.title ? this.state.title : null}
+
+          />
 
           <div>
-          <p>body</p>
+            <p>body</p>
           </div>
-          <input 
+          <input
             onChange={(e) => this.props.getBody(e.target.value)} />
 
           <button onClick={() => this.triggerPost()}>Submit</button>

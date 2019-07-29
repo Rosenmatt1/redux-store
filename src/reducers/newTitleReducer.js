@@ -5,7 +5,9 @@ export default (state = [], action) => {
   // return state
   switch (action.type) {
     case 'GET_TITLE':
-      console.log('reducer fired')
+      return action.payload 
+    case 'ClEAR_TITLE':
+      console.log('clear title reducer fired')
       return action.payload 
     default:
       return state;
