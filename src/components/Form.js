@@ -1,10 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createPost } from '../actions'
-import { getTitle } from '../actions'
-import { getBody } from '../actions'
-import { clearTitle } from '../actions'
+import { createPost, getTitle, getBody, clearTitle, titleError } from '../actions'
 import '../App.css'
+import Validation from './Validation.js'
 
 class Form extends React.Component {
 
@@ -18,6 +16,7 @@ class Form extends React.Component {
 
   triggerPost() {
     this.props.createPost()
+    this.props.titleError()
     this.props.clearTitle()
   }
 
@@ -44,15 +43,17 @@ class Form extends React.Component {
 
           <button onClick={() => this.triggerPost()}>Submit</button>
         </div>
-
+        {this.props.isError && <Validation />}
+          
+        
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  return { title: state.title }
+  return { title: state.title, isError: state.isError }
 }
 
-export default connect(mapStateToProps, { getTitle, getBody, createPost, clearTitle })(Form)
+export default connect(mapStateToProps, { getTitle, getBody, createPost, clearTitle, titleError })(Form)
 
