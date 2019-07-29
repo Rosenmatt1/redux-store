@@ -40,8 +40,7 @@ class Form extends React.Component {
           </div>
           <input
             onChange={(e) => this.sendTitle(e)}
-            value={this.state.title ? this.state.title : null}
-
+            value={this.props.title}
           />
 
           <div>
@@ -58,9 +57,9 @@ class Form extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return { title: state.posts }
-// }
+const mapStateToProps = (state) => {
+  return { title: state.title }
+}
 
-export default connect(null, { getTitle, getBody, createPost, clearTitle })(Form)
+export default connect(mapStateToProps, { getTitle, getBody, createPost, clearTitle })(Form)
 

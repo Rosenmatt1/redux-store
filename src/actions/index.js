@@ -55,7 +55,7 @@ export const fetchUser = id => async dispatch => {
 }
 
 export const getTitle = title => dispatch => {
-  console.log("action fired")
+  // console.log("action fired")
   dispatch({
     type: 'GET_TITLE',
     payload: title
@@ -63,6 +63,7 @@ export const getTitle = title => dispatch => {
 }
 
 export const clearTitle = () => dispatch => {
+  console.log("clearTitle fired")
   const emptyString = ""
   dispatch({
     type: 'CLEAR_TITLE',

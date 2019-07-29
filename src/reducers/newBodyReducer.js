@@ -5,7 +5,6 @@ export default (state = [], action) => {
   // return state
   switch (action.type) {
     case 'GET_BODY':
-      console.log('reducer')
       return action.payload
     default:
       return state;
