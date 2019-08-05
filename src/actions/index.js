@@ -84,14 +84,12 @@ export const titleError = () => (dispatch, getState) => {
 export const bodyEmpty = () => (dispatch, getState) => {
   const { body } = getState()
   const empty = body.length <= 0 ? true : false
-  // console.log("error action fired", error)
+  console.log("body empty action fired", empty)
   dispatch({
     type: 'Body_Empty',
     payload: empty
   })
 }
-
-
 
 export const getBody = body => dispatch => {
   dispatch({

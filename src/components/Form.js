@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createPost, getTitle, getBody, clearBody, clearTitle, titleError } from '../actions'
+import { createPost, getTitle, getBody, clearBody, bodyEmpty, clearTitle, titleError } from '../actions'
 import '../App.css'
 import Validation from './Validation.js'
+import ValidationBody from './ValidationBody.js'
 
 class Form extends React.Component {
 
@@ -18,6 +19,7 @@ class Form extends React.Component {
     this.props.createPost()
     this.props.titleError()
     this.props.clearTitle()
+    this.props.bodyEmpty()
     this.props.clearBody()
   }
 
@@ -48,6 +50,8 @@ class Form extends React.Component {
         </div>
 
         {this.props.isError && <Validation />}
+        <ValidationBody />
+        
 
 
       </div>
@@ -59,5 +63,5 @@ const mapStateToProps = (state) => {
   return { title: state.title, body: state.body, isError: state.isError }
 }
 
-export default connect(mapStateToProps, { getTitle, getBody, clearBody, createPost, clearTitle, titleError })(Form)
+export default connect(mapStateToProps, { getTitle, getBody, clearBody, createPost, clearTitle, titleError, bodyEmpty })(Form)
 
