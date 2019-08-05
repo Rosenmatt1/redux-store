@@ -6,6 +6,8 @@ export default (state = "", action) => {
   switch (action.type) {
     case 'GET_BODY':
       return action.payload
+    case 'CLEAR_BODY':
+      return action.payload
     default:
       return state;
   }
