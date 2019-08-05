@@ -4,6 +4,8 @@ import usersReducer from './usersReducer'
 import newTitleReducer from './newTitleReducer'
 import newBodyReducer from './newBodyReducer'
 import errorReducer from './errorReducer'
+import bodyEmptyReducer from './bodyEmptyReducer'
+
 
 export default combineReducers({
   // fakeReducer: () => 'hi there'
@@ -11,5 +13,6 @@ export default combineReducers({
   users: usersReducer,
   title: newTitleReducer,
   body: newBodyReducer,
-  isError: errorReducer
+  isError: errorReducer,
+  emptyBody: bodyEmptyReducer,
 })
