@@ -6,7 +6,6 @@ import newBodyReducer from './newBodyReducer'
 import errorReducer from './errorReducer'
 import bodyEmptyReducer from './bodyEmptyReducer'
 
-
 export default combineReducers({
   // fakeReducer: () => 'hi there'
   posts: postsReducer,
@@ -14,5 +13,5 @@ export default combineReducers({
   title: newTitleReducer,
   body: newBodyReducer,
   isError: errorReducer,
-  emptyBody: bodyEmptyReducer,
+  emptyBody: bodyEmptyReducer
 })

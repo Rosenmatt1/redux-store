@@ -50,17 +50,15 @@ class Form extends React.Component {
         </div>
 
         {this.props.isError && <Validation />}
-        <ValidationBody />
+        {this.props.emptyBody && <ValidationBody />}
         
-
-
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  return { title: state.title, body: state.body, isError: state.isError }
+  return { title: state.title, body: state.body, isError: state.isError, emptyBody: state.emptyBody }
 }
 
 export default connect(mapStateToProps, { getTitle, getBody, clearBody, createPost, clearTitle, titleError, bodyEmpty })(Form)
