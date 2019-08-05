@@ -71,6 +71,15 @@ export const clearTitle = () => dispatch => {
   })
 }
 
+export const clearBody = () => dispatch => {
+  console.log("clearBody fired")
+  const emptyString = ""
+  dispatch({
+    type: 'CLEAR_BODY',
+    payload: emptyString
+  })
+}
+
 export const titleError = () => (dispatch, getState) => {
   const { title } = getState()
   const error = title.length < 6 ? true : false

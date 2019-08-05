@@ -14,7 +14,7 @@ class Form extends React.Component {
     this.props.getBody(e.target.value)
   }
 
-  triggerPost() {
+  triggerPost = () => {
     this.props.createPost()
     this.props.titleError()
     this.props.clearTitle()
@@ -43,6 +43,7 @@ class Form extends React.Component {
 
           <button onClick={() => this.triggerPost()}>Submit</button>
         </div>
+        
         {this.props.isError && <Validation />}
           
         
