@@ -74,7 +74,7 @@ export const clearTitle = () => dispatch => {
 export const titleError = () => (dispatch, getState) => {
   const { title } = getState()
   const error = title.length < 6 ? true : false
-  console.log("error action fired", error)
+  // console.log("error action fired", error)
   dispatch({
     type: 'ERROR_LENGTH',
     payload: error

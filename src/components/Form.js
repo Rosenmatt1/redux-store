@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createPost, getTitle, getBody, clearTitle, titleError } from '../actions'
+import { createPost, getTitle, getBody, clearBody, clearTitle, titleError } from '../actions'
 import '../App.css'
 import Validation from './Validation.js'
 
@@ -18,6 +18,7 @@ class Form extends React.Component {
     this.props.createPost()
     this.props.titleError()
     this.props.clearTitle()
+    this.props.clearBody()
   }
 
   render() {
@@ -39,22 +40,24 @@ class Form extends React.Component {
             <p>body</p>
           </div>
           <input
-            onChange={(e) => this.props.getBody(e.target.value)} />
+            onChange={(e) => this.props.getBody(e.target.value)}
+            value={this.props.body}
+          />
 
           <button onClick={() => this.triggerPost()}>Submit</button>
         </div>
-        
+
         {this.props.isError && <Validation />}
-          
-        
+
+
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  return { title: state.title, isError: state.isError }
+  return { title: state.title, body: state.body, isError: state.isError }
 }
 
-export default connect(mapStateToProps, { getTitle, getBody, createPost, clearTitle, titleError })(Form)
+export default connect(mapStateToProps, { getTitle, getBody, clearBody, createPost, clearTitle, titleError })(Form)
 
