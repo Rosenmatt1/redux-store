@@ -159,13 +159,6 @@ export const deletePost = (id) => async (dispatch, getState) => {
 export const editPost = (title, id) => async (dispatch, getState) => {
   // console.log(title, id)
   // const posts = getState().posts
-  // // console.log("theDeletePosts posts", posts)
-  // // const removedPost = posts.filter(post => {
-  // //   if (post.id === id) {
-  // //     return post
-  // //   }
-  // //   return !post
-  // // })
   const updatedPost = {
     title: title,
     id: id
