@@ -54,6 +54,10 @@ export const fetchUser = id => async dispatch => {
   })
 }
 
+export const actionTypes = {
+  GET_TITLE: 'GET_TITLE'
+}
+
 export const getTitle = title => dispatch => {
   // console.log("action fired")
   dispatch({
@@ -69,6 +73,7 @@ export const clearTitle = () => dispatch => {
     type: 'CLEAR_TITLE',
     payload: emptyString
   })
+  return ""
 }
 
 export const titleError = () => (dispatch, getState) => {
